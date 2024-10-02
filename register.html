@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Cancer Detection App - Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 60px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px; /* Set a fixed width */
+        }
+        .button {
+            width: 100%; /* Full width for the buttons */
+            padding: 10px;
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #4a148c; /* Darker purple */
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Register</h2>
+    <input type="text" id="firstName" placeholder="First Name" required>
+    <input type="text" id="lastName" placeholder="Last Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="text" id="phone" placeholder="Phone Number" required>
+    <select id="age" required>
+        <option value="" disabled selected>Age</option>
+        <!-- Age dropdown options -->
+        <script>
+            for (let i = 18; i <= 100; i++) {
+                document.write(`<option value="${i}">${i}</option>`);
+            }
+        </script>
+    </select>
+    <select id="gender" required>
+        <option value="" disabled selected>Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+    </select>
+    <select id="state" required>
+        <option value="" disabled selected>State</option>
+        <!-- Add state options here -->
+        <option value="state1">State 1</option>
+        <option value="state2">State 2</option>
+        <option value="state3">State 3</option>
+    </select>
+    <input type="text" id="city" placeholder="City" required>
+    <input type="text" id="address" placeholder="Address" required>
+    <input type="number" id="pincode" placeholder="Pincode" required>
+    <input type="date" id="yearOfBirth" placeholder="Year of Birth" required>
+    <input type="password" id="regPassword" placeholder="Password" required>
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+    
+    <button class="button" onclick="register()">Register</button>
+</div>
+
+<script>
+    function register() {
+        // Registration logic
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const age = document.getElementById('age').value;
+        const gender = document.getElementById('gender').value;
+        const state = document.getElementById('state').value;
+        const city = document.getElementById('city').value;
+        const address = document.getElementById('address').value;
+        const pincode = document.getElementById('pincode').value;
+        const yearOfBirth = document.getElementById('yearOfBirth').value;
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        // You can implement actual registration logic here (e.g., send data to server)
+        alert("Registration successful! You can now log in.");
+        window.location.href = 'dashboard.html'; // Redirect to dashboard page
+    }
+</script>
+
+</body>
+</html>

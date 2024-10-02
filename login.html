@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Cancer Detection App - Login</title>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 60px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px; /* Set a fixed width */
+        }
+        .button {
+            width: 100%; /* Full width for the buttons */
+            padding: 10px;
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #4a148c; /* Darker purple */
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <input type="text" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Password" required><br>
+    <br><button class="button" onclick="login()">Login</button><br><br>
+    <button class="button" onclick="window.location.href='register.html'">Register</button>
+</div>
+
+<script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+  apiKey: "AIzaSyATXdWtAclF2juvzA_7m2BXYaSfGLbhHYM",
+  authDomain: "candetect-a8139.firebaseapp.com",
+  projectId: "candetect-a8139",
+  storageBucket: "candetect-a8139.appspot.com",
+  messagingSenderId: "220097241018",
+  appId: "1:220097241018:web:a7c9db90a87d3a5c82c783"
+};
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    function login() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Logged in successfully
+                const user = userCredential.user;
+                console.log('User logged in:', user);
+                window.location.href = 'dashboard.html'; // Redirect to dashboard on successful login
+            })
+            .catch((error) => {
+                // Handle errors
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.error('Login error:', errorCode, errorMessage);
+                alert("Login failed. Please check your credentials.");
+            });
+    }
+</script>
+
+</body>
+</html>

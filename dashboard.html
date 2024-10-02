@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lung Cancer Detection App - Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #6a1b9a;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 220px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #6a1b9a;
+            padding-top: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar a {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 5px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #4a148c;
+        }
+
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .button {
+            display: block;
+            width: 200px;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: #6a1b9a;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #4a148c;
+        }
+
+        input[type="text"], input[type="file"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+
+        .output {
+            margin-top: 20px;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #symptomInput {
+            display: block;
+            margin: 0 auto;
+        }
+
+        #uploadInput {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h1>Welcome to Lung Cancer Detection App</h1>
+    <p id="userGreeting"></p>
+</div>
+
+<div class="sidebar">
+    <a href="#" onclick="showSection('trackHealth')">Track Health</a>
+    <a href="#" onclick="showSection('uploadReport')">Upload Medical Report</a>
+    <a href="#" onclick="showSection('viewResults')">View Test Results</a>
+    <a href="#" onclick="logout()">Logout</a>
+</div>
+
+<div class="content">
+    <!-- Track Health Section -->
+    <div id="trackHealth" class="section">
+        <h2>Track Your Health</h2>
+        <input type="text" id="symptomInput" placeholder="Enter your symptom">
+        <button class="button" onclick="addSymptom()">Submit</button>
+        <div id="symptomOutput" class="output"></div>
+    </div>
+
+    <!-- Upload Medical Report Section -->
+    <div id="uploadReport" class="section">
+        <h2>Upload Medical Report</h2>
+        <input type="file" id="uploadInput" accept=".jpg, .jpeg, .png, .pdf">
+        <button class="button" onclick="uploadReport()">Upload</button>
+        <div id="uploadOutput" class="output"></div>
+    </div>
+
+    <!-- View Test Results Section -->
+    <div id="viewResults" class="section">
+        <h2>View Test Results</h2>
+        <p>Previous test results will be shown here.</p>
+        <div id="resultsOutput" class="output">
+            <!-- Test results will be dynamically displayed here -->
+        </div>
+    </div>
+</div>
+
+
+<script>
+    // Set user greeting dynamically
+    document.getElementById('userGreeting').innerText = "Welcome, Test User!";
+
+    // Function to show selected section
+    function showSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('.section').forEach(section => section.style.display = 'none');
+
+        // Show the selected section
+        document.getElementById(sectionId).style.display = 'block';
+    }
+
+    // Function to handle Track Health input
+    function addSymptom() {
+        const symptom = document.getElementById('symptomInput').value;
+
+        if (symptom) {
+            const output = document.getElementById('symptomOutput');
+            output.innerHTML = `<strong>Entered Symptom:</strong> ${symptom}`;
+            document.getElementById('symptomInput').value = ''; // Clear input
+        } else {
+            alert('Please enter a symptom.');
+        }
+    }
+
+    // Function to handle Medical Report upload
+    function uploadReport() {
+        const fileInput = document.getElementById('uploadInput');
+        const file = fileInput.files[0];
+
+        if (file) {
+            const output = document.getElementById('uploadOutput');
+            output.innerHTML = `<strong>Uploaded File:</strong> ${file.name}`;
+        } else {
+            alert('Please select a file to upload.');
+        }
+    }
+
+    // Logout function
+    function logout() {
+        window.location.href = 'login.html';
+    }
+</script>
+
+</body>
+</html>
